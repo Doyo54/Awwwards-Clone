@@ -1,25 +1,51 @@
-<header class="header" id="header">
-    <nav class="navbar container">
-       <a href="./index.html" class="brand">Brand</a>
-       <div class="burger" id="burger">
-          <span class="burger-line"></span>
-          <span class="burger-line"></span>
-          <span class="burger-line"></span>
-       </div>
-       <span class="overlay"></span>
-       <div class="menu" id="menu">
-          <ul class="menu-inner">
-             <li class="menu-item"><a class="menu-link" href="#">Home</a></li>
-             <li class="menu-item"><a class="menu-link" href="#">Profile</a></li>
-             <li class="menu-item"><a class="menu-link" href="#">Pricing</a></li>
-             <li class="menu-item"><a class="menu-link" href="#">Project</a></li>
-             <li class="menu-item"><a class="menu-link" href="#">Contact</a></li>
-          </ul>
-       </div>
-       <button><i class="bx bx-search search-toggle"></i></button>
-       <form class="search-block">
-          <span><i class="bx bx-arrow-back search-cancel"></i></span>
-          <input type="search" name="search" class="search-input" placeholder="Search here..." autofocus>
-       </form>
-    </nav>
- </header>
+<nav>
+    <div class="logo">AWWARDS</div>
+  
+    <div class="navbar">
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+       
+        {% if user.is_authenticated %}
+        <li class="nav-item"><a href="/" class="nav-link">Profile
+        <i class="fa fa-user-circle"></i>
+      </a></li>
+      <li class="nav-item"><a href="/" class="nav-link">Update Profile
+        <i class="fa fa-user-circle"></i>
+      </a></li>
+      <li class="nav-item"><a href="/logout" id="signout" class="nav-link">Sign Out
+        <i class="fa fa-sign-out"></i>
+      </a></li>
+    
+    {% else %}
+    
+      <a class='btn btn-default' href="/accounts/login">Login</a>
+    
+
+    {% endif %}
+      </ul>
+    </div>
+  
+    <div class="hamburger">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+    
+  </nav>
+  <script>
+const hamburger = document.querySelector(".hamburger");
+const navMenu = document.querySelector(".nav-menu");
+
+hamburger.addEventListener("click", () => {
+  hamburger.classList.toggle("active");
+  navMenu.classList.toggle("active");
+});
+
+document.querySelectorAll(".nav-link").forEach((link) =>
+  link.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    navMenu.classList.remove("active");
+  })
+);
+
+  </script>

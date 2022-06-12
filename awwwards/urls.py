@@ -25,4 +25,5 @@ urlpatterns = [
     re_path(r'^accounts/', include('django.contrib.auth.urls')),
     re_path(r'^accounts/login', view.LoginView.as_view(template_name='registration/login.html'), name ='login'), 
     re_path(r'^logout/$', view.LogoutView.as_view(next_page='login')), 
+    re_path(r'',include('app.urls')),
 ]

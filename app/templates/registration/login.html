@@ -1,0 +1,60 @@
+{%extends "django_registration/base.html"%}
+{% load bootstrap3 %}
+{% block content %}
+<div class="content" style="font-size: 20px;">
+  <div class="row">
+    <!-- Empty div -->
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      {% if form.errors %}
+        <p> Password or Username is incorrect </p>
+      {% endif %}
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <h3 class="text-center">Instagram</h3>
+        </div>
+        <div class="panel-body">
+
+          <form  action="/accounts/login/" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form%}
+
+            <div class="form-group">
+              <button type="submit" class="login-button" title="login" value="Login">Log In</button>
+            </div>
+            <input type="hidden" name="next" value="{{next}}">
+            
+            <div class="separator">
+              <div class="line"></div>
+              <p>OR</p>
+              <div class="line"></div>
+            </div>
+          <div class="other">
+            <button class="fb-login-btn" type="button">
+              <i class="fa fa-facebook-official fb-icon"></i>
+              <span class="">Log in with Facebook</span>
+            </button>
+            <a class="forgot-password" href="#">Forgot password?</a>
+          </div>
+
+            <input type="hidden" name="next" value="{{next}}">
+
+          </form>
+          
+        </div>
+
+      </div>
+      <div class="box">
+        <p class="text-center">Don't have an account? <a class="signup" href="/accounts/register">Create an account</a>.</p>
+        </div>
+    </div>
+    
+    <!-- empty div -->
+    <div class="col-md-4">
+      
+    </div>
+  </div>
+</div>
+
+{% endblock %}

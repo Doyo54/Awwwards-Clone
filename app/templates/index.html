@@ -1,5 +1,10 @@
 {% extends 'base.html'%}
 {% block content %}
 {{block.super}}
-<h1>Hi</h1>
+{% for post in posts %}
+<a href="{{post.url}}">
+<img src="{{post.image.url}}" alt="" width="400">
+
+</a>
+{% endfor %}
 {% endblock%}

@@ -8,6 +8,7 @@ urlpatterns = [
     
     re_path(r'^$',views.index,name='index'),
     re_path(r'^api/', views.PostView.as_view()),
+    re_path(r'^profile/(?P<username>\w+)/', views.profile, name='profile'),
 
 ]   
 if settings.DEBUG:

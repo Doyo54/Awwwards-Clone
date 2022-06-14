@@ -11,6 +11,9 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
+    @classmethod
+    def update_profile(cls, id, value):
+        cls.objects.filter(id=id).update(profile_picture=value)
 
 
 class Post(models.Model):

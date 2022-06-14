@@ -16,10 +16,11 @@ class Profile(models.Model):
         cls.objects.filter(id=id).update(profile_picture=value)
 
     def save_profile(self):
-        self.name
+        self.save()
+
     def delete_profile(self):
         self.delete()
-        
+
     @classmethod
     def search_profile(cls, name):
         return cls.objects.filter(user__username__icontains=name).all()
@@ -36,3 +37,6 @@ class Post(models.Model):
 
     def __str__(self):
         return f'{self.title}'
+
+    def save_post(self):
+        self.save()

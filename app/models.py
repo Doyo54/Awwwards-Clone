@@ -14,8 +14,11 @@ class Profile(models.Model):
     @classmethod
     def update_profile(cls, id, value):
         cls.objects.filter(id=id).update(profile_picture=value)
+
     def save_profile(self):
         self.name
+    def delete_profile(self):
+        self.delete()
 
 
 class Post(models.Model):

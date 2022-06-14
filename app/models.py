@@ -43,3 +43,7 @@ class Post(models.Model):
 
     def delete_post(self):
         self.delete()
+    
+    @classmethod
+    def search_post(cls, title):
+       return cls.objects.filter(title__icontains=title).all()

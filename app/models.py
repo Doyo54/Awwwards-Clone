@@ -31,7 +31,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to='post/', blank=True) 
     url = models.URLField(max_length=255)
     technologies = models.CharField(max_length=200, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="posts",null=True)
     date = models.DateTimeField(auto_now_add=True, blank=True)
     description = models.TextField(max_length=255)
 
@@ -47,3 +47,8 @@ class Post(models.Model):
     @classmethod
     def search_post(cls, title):
        return cls.objects.filter(title__icontains=title).all()
+
+    @classmethod
+    def get_Profile(cls, user):
+        profile = Post.objects.filter(user__user=user).all()
+        return profile

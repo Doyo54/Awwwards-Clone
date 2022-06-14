@@ -9,8 +9,8 @@ from rest_framework import status
 # Create your views here.
 @login_required(login_url='/accounts/login')
 def index(request):
-    
-    return render(request, 'index.html')
+    posts = Post.objects.all()
+    return render(request, 'index.html', {'posts': posts,})
 
 class PostView(APIView):
     def get(self, request, format=None):

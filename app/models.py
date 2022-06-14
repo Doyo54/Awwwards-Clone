@@ -11,3 +11,16 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=155)
+    image = models.ImageField(upload_to='post/', blank=True) 
+    url = models.URLField(max_length=255)
+    technologies = models.CharField(max_length=200, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
+    date = models.DateTimeField(auto_now_add=True, blank=True)
+    description = models.TextField(max_length=255)
+
+    def __str__(self):
+        return f'{self.title}'

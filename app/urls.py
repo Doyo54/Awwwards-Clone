@@ -7,6 +7,7 @@ from . import views
 urlpatterns = [
     
     re_path(r'^$',views.index,name='index'),
+    re_path(r'^api/', views.PostView.as_view()),
 
 ]   
 if settings.DEBUG:

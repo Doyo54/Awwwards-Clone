@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import re_path,include
 from django.contrib.auth import views as view
 from app import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
 
@@ -27,3 +29,5 @@ urlpatterns = [
     re_path(r'^logout/$', view.LogoutView.as_view(next_page='login')), 
     re_path(r'',include('app.urls')),
 ]
+if settings.DEBUG:
+    urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

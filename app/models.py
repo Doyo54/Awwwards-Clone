@@ -19,6 +19,10 @@ class Profile(models.Model):
         self.name
     def delete_profile(self):
         self.delete()
+        
+    @classmethod
+    def search_profile(cls, name):
+        return cls.objects.filter(user__username__icontains=name).all()
 
 
 class Post(models.Model):

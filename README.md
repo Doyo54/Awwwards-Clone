@@ -3,7 +3,7 @@
 Doyo Abdikadir Doyo
 
 ## Description
-
+At Moringa school you create a lot of projects (IPs, Mid-week projects) but you never know how those projects rate with your peers. Your objective is to create an application like Awwards (Links to an external site.) (It doesn't necessarily have to be exactly the same). The application will allow a user to post a project he/she has created and get it reviewed by his/her peers.
 
 ## Screenshots
 Home Page

@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect,HttpResponseRedirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from rest_framework.response import Response
@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from .models import  Profile,Post
 from .serializer import ProfileSerializer,PostSerializer
 from rest_framework import status
-
+from .forms import UpdateUserProfileForm
 # Create your views here.
 @login_required(login_url='/accounts/login')
 def index(request):
@@ -28,3 +28,15 @@ class PostView(APIView):
 def profile(request, username):
         user_prof = Post.get_Profile(username)
         return render(request, 'user_profile.html', {'user_prof': user_prof,})
+
+def update_profile(request, username):
+    images = request.user.profile.posts.all()
+    if request.method == 'POST':
+        prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if  prof_form.is_valid():
+            prof_form.save()
+            return HttpResponseRedirect(request.path_info)
+    else:
+        prof_form = UpdateUserProfileForm(instance=request.user.profile)
+  
+    return render(request, 'profile.html', {'prof_form': prof_form,'images': images,})

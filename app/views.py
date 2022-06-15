@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect,HttpResponseRedirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from flask_login import current_user
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import  Profile,Post
@@ -64,14 +65,14 @@ def search_post(request):
     return render(request, 'search_results.html', {'message': message})
 
 def add_project(request):
+    profile = Profile.objects.get_or_create(user=request.user)
     if request.method == 'POST':
-        profile = Profile.objects.get_or_create(user=request.user)
         form = UploadProjectForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
-            post.editor = request.user.profile
+            post.editor = request.user
             post.save()
-            return redirect('index')
+            return HttpResponseRedirect('/')
     else:
         form = UploadProjectForm()
     params = {

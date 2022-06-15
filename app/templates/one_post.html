@@ -20,11 +20,9 @@
                     <p class="card-text "><img src="{{post.user.profile.profile_picture.url}}"
                                                class="nav-img mr-2"
                                                alt="">
-                                               <a href="{% url 'profile' post.user.id %}">
+                                               <a href="{% url 'profile' user.id %}">
                         By {{post.user.user.username|title}} </a><span style="float:right">{{post.date|date}}</span><br>
                         {{post.description}}
-
-
                     </p>
                 </div>
             </div>

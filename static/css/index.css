@@ -160,7 +160,7 @@ a.nav-link:hover {
   }
 
   .active {
-    background-color:black;
+    background-color:transparent;
     background-size:10cm;
     color: white;
     right: 0;

@@ -10,13 +10,15 @@
                     </div>
                     <div class="col-md-6 mt-3">
             
-                        <h2>{{ user.profile.name|upper }}</h2>
+                        <h2>{{ user.username|upper }}</h2>
                         <hr>
                         <div class="post-details mt-3 mb-3">
+                            {% if user.profile.bio %}
                             <span class="mr-5"><strong>{{user.profile.bio}}</strong></span><br>
-                            
+                        {% else %}
+                        <span class="mr-5"><strong>My Bio</strong></span>
+                        {% endif %}
                         </div>
-        
         </div>
     </div>
         <div class="col-md-3"></div>
@@ -47,6 +49,6 @@
         {% endfor %}
     </div>
 
-</div>
+
 
 {% endblock %}

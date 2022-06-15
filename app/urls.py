@@ -12,6 +12,7 @@ urlpatterns = [
     re_path(r'^update_profile/(?P<username>\w+)/', views.update_profile, name='update_profile'),
     re_path(r'^one_post/(?P<id>\w+)/', views.one_post, name='one_post'),
     re_path(r'^search/', views.search_post, name='search'),
+    re_path(r'^add-project/', views.add_project, name='add'),
 ]   
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

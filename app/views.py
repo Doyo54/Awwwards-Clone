@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from .models import  Profile,Post
 from .serializer import ProfileSerializer,PostSerializer
 from rest_framework import status
-from .forms import UpdateUserProfileForm
+from .forms import UpdateUserProfileForm,UploadProjectForm
 # Create your views here.
 @login_required(login_url='/accounts/login')
 def index(request):
@@ -62,3 +62,19 @@ def search_post(request):
     else:
         message = "You haven't searched for any User"
     return render(request, 'search_results.html', {'message': message})
+
+def add_project(request):
+    if request.method == 'POST':
+        profile = Profile.objects.get_or_create(user=request.user)
+        form = UploadProjectForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.editor = request.user.profile
+            post.save()
+            return redirect('index')
+    else:
+        form = UploadProjectForm()
+    params = {
+        'form': form,
+    }
+    return render(request, 'add_project.html',params)

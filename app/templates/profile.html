@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container" style="margin-top:8%; font-size: x-large;">
+    <div class="content-section">
+        <div class="media">
+            <div class="container">
+                <div class="row">
+                    <a href="/">
+                        <div class="col-md-1"> <i style="font-size:xx-large; margin-right: 10%;" class="fa fa-arrow-left" aria-hidden="true"></i></div>
+                        </a>
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                        <img  src="{{ user.profile.profile_picture.url }}" style="border-radius: 50%; width: 80%;">
+                    </div>
+                    <div class="col-md-6 mt-3">
+                        <div class="media-body">
+                            <div class="account-heading"><span class="mr-3 text-secondary username">Name: {{ user.username|upper }}</span>
+                                <a class="btn btn-sm btn-outline-secondary mr-3" data-toggle="modal" data-target=".bd-example-modal-md"><strong style="color: purple; font-size: x-large; margin-left: 20%">Edit Profile</strong></a>
+                            </div>
+                            <p class="text-secondary">Bio: {{ user.profile.bio|upper }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-md ">
+                <div class="modal-content">
+                    <form action="" method="post" novalidate enctype="multipart/form-data" class="mr-4 mt-4 ml-4 mb-4">
+                        {% csrf_token%}
+                        <div class="form-group row" style=" font-size: 20px; margin-top: 1%;margin-left: 1%;">
+                            <div class="col-md-1">
+                        {{ prof_form}}
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-md"> Update Profile</button>
+                        <button type="button" class="btn btn-md btn-outline-danger" data-dismiss="modal">
+                            Close
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="mt-4">
+  
+</div>
+
+{% endblock %}

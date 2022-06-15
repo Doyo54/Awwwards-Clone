@@ -9,7 +9,7 @@
         <li class="nav-item"><a href="{% url 'profile' user.id  %}" class="nav-link">Profile
         <i class="fa fa-user-circle"></i>
       </a></li>
-      <li class="nav-item"><a href="/" class="nav-link">Update Profile
+      <li class="nav-item"><a href="{% url 'update_profile' user.id  %}" class="nav-link">Update Profile
         <i class="fa fa-user-circle"></i>
       </a></li>
       <li class="nav-item"><a href="/logout" id="signout" class="nav-link">Sign Out

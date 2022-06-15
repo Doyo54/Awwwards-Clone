@@ -27,6 +27,9 @@ class PostView(APIView):
 
 def profile(request, username):
         user_prof = Post.get_Profile(username)
+        if request.user == user_prof:
+           return redirect('update_profile', username=request.user.username)
+           
         return render(request, 'user_profile.html', {'user_prof': user_prof,})
 
 def update_profile(request, username):
@@ -38,5 +41,4 @@ def update_profile(request, username):
             return HttpResponseRedirect(request.path_info)
     else:
         prof_form = UpdateUserProfileForm(instance=request.user.profile)
-  
     return render(request, 'profile.html', {'prof_form': prof_form,'images': images,})

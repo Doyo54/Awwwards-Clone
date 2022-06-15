@@ -16,7 +16,7 @@ class Profile(models.Model):
         cls.objects.filter(id=id).update(profile_picture=value)
 
     def save_profile(self):
-        self.save()
+        self.name
 
     def delete_profile(self):
         self.delete()
@@ -39,7 +39,7 @@ class Post(models.Model):
         return f'{self.title}'
 
     def save_post(self):
-        self.save()
+        self.image
 
     def delete_post(self):
         self.delete()

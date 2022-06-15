@@ -48,3 +48,17 @@ def update_profile(request, username):
 def one_post(request,id):
     posts = Post.objects.filter(id=id).all()
     return render(request, 'one_post.html', {'posts': posts,})
+
+def search_post(request):
+    if 'search' in request.GET and request.GET['search']:
+        name = request.GET.get("search")
+        results = Post.search_post(name)
+        message = f'name'
+        loops = {
+            'results': results,
+            'message': message
+        }
+        return render(request, 'search_results.html', loops)
+    else:
+        message = "You haven't searched for any User"
+    return render(request, 'search_results.html', {'message': message})

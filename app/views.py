@@ -29,12 +29,14 @@ def profile(request, username):
         user_prof = Post.get_Profile(username)
         if request.user == user_prof:
            return redirect('update_profile', username=request.user.username)
-           
+
         return render(request, 'user_profile.html', {'user_prof': user_prof,})
 
 def update_profile(request, username):
+    profile= Profile.objects.get_or_create(user=request.user)
     images = request.user.profile.posts.all()
     if request.method == 'POST':
+        profile= Profile.objects.get_or_create(user=request.user)
         prof_form = UpdateUserProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if  prof_form.is_valid():
             prof_form.save()
@@ -42,3 +44,7 @@ def update_profile(request, username):
     else:
         prof_form = UpdateUserProfileForm(instance=request.user.profile)
     return render(request, 'profile.html', {'prof_form': prof_form,'images': images,})
+
+def one_post(request,id):
+    posts = Post.objects.filter(id=id).all()
+    return render(request, 'one_post.html', {'posts': posts,})

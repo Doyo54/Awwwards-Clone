@@ -21,7 +21,8 @@
                                                class="nav-img mr-2"
                                                alt="">
                                                <a href="{% url 'profile' post.user.id %}">
-                        By {{post.user.user.username|title}} </a><span style="float:right">{{post.date|date}}</span>
+                        By {{post.user.user.username|title}} </a><span style="float:right">{{post.date|date}}</span><br>
+                        {{post.description}}
 
 
                     </p>
